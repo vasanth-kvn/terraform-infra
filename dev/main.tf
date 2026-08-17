@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket = "5terraform-1234"
     key = "dev/dev.tfstate"
-    region = var.region
+    region = "us-east-1"
   }
   required_providers {
     aws = {
@@ -18,10 +18,10 @@ provider "aws" {
 module "vpc" {
   source   = "../modules/project-vpc"
   cidr     = "10.0.0.0/16"
-  vpc-name = "project-vpcaws"
+  vpc-name = var.vpc-name
 }
 module "public_subnet" {
-  source            = "./modules/project_subnet"
+  source            = "../modules/project_subnet"
   vpc_id            = module.vpc.vpc_id
   subnet_cidr       = var.subnet_cidr
   availability_zone = var.availability_zone
