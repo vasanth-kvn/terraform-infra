@@ -1,6 +1,6 @@
 name: deploytos3
 on: 
-  pull_request: 
+  push: 
     branches:
       - dev
 permissions: 
