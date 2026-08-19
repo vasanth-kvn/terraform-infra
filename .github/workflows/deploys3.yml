@@ -14,11 +14,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: config-terra
-        uses: actions/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v3
       - name: config-oidc
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assure: arn:aws:iam::034703319699:role/oide_role
+          role-to-assume: arn:aws:iam::034703319699:role/oide_role
           role-session-name: GitHubActions
           aws-region : us-east-1
       - name: init
