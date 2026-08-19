@@ -1,1 +1,31 @@
-
+name: deploytos3
+on: 
+  pull_request: 
+    branches:
+      - dev
+permissions: 
+  id-token: write
+  contents: read
+  
+jobs:
+  build :
+    runs-on: ubuntu-latest
+    steps :
+      - name: checkout
+        uses: action/checkout@v4
+      - name: config-terra
+        uses: action/setup-terraform@v3
+      - name: config-oidc
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assure: arn:aws:iam::034703319699:role/oide_role
+          role-session-name: GitHubActions
+          aws-region : us-east-1
+      - name: init
+        run: terraform init
+      - name: validate
+        run: terraform validate
+      - name: plan
+        run: terraform plan
+        
+        
