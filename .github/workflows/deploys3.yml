@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps :
       - name: checkout
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
       - name: config-terra
-        uses: action/setup-terraform@v3
+        uses: actions/setup-terraform@v3
       - name: config-oidc
         uses: aws-actions/configure-aws-credentials@v4
         with:
